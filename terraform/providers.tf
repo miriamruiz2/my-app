@@ -6,8 +6,8 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "tf-bucket"
-    key = "backed"
+    bucket = "mi-tf-bucket"
+    key = "terraform/state/terraform.tfstate"
     region = "us-east-1"
   }
 }
