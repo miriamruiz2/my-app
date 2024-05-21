@@ -39,7 +39,7 @@ resource "aws_alb" "app-lb" {
     name = "app-lb"
     load_balancer_type = "application"
     subnets = module.vpc.public_subnets
-    security_groups = [aws_security_group.lb-sg]
+    security_groups = [aws_security_group.lb-sg.id]
 }
 
 resource "aws_lb_target_group" "app-tg" {
