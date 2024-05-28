@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: app
-        image: jotadrilo/k8s-info:latest
+        image: newrelic/k8s-metadata-injection:latest
         ports:
           - containerPort: 8080
