@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: app
-        image: paulbouwer/hello-kubernetes:1.8
+        image: jotadrilo/k8s-info:latest
         ports:
           - containerPort: 8080
