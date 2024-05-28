@@ -37,10 +37,6 @@ jobs:
         working-directory: terraform
         run: terraform init
 
-      - name: Terraform Plan
-        working-directory: terraform
-        run: terraform plan -out=plan.tfplan
-
       - name: Terraform Apply
         working-directory: terraform
         run: terraform apply -auto-approve
@@ -50,6 +46,6 @@ jobs:
           aws eks update-kubeconfig --name ${{ env.CLUSTER_NAME }} --region ${{ env.AWS_REGION }}
             
       - name: Deploy Kubernetes manifests
-        run: kubectl apply -f terraform/manifest/
+        run: kubectl apply -f terraform/manifests/
 
     
