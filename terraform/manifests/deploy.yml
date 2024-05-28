@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: app
-        image: newrelic/k8s-metadata-injection:latest
+        image: rancher/eks-operator:v1.9.0-rc.4
         ports:
           - containerPort: 8080
