@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: app
-        image: rancher/eks-operator:v1.9.0-rc.4
+        image: paulbouwer/hello-kubernetes:1.10
         ports:
           - containerPort: 8080
