@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: app
-        image: paulbouwer/hello-kubernetes:1.10
+        image: hjacobs/kube-web-view:latest
         ports:
           - containerPort: 8080
