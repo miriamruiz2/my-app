@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: hello-kubernetes-clusterrolebinding
+subjects:
+- kind: ServiceAccount
+  name: hello-kubernetes
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: hello-kubernetes-clusterrole
+  apiGroup: rbac.authorization.k8s.io
