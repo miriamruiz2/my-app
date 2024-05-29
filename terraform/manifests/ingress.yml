@@ -7,7 +7,8 @@ metadata:
     kubernetes.io/ingress.class: alb
 spec:
   rules:
-    - http:
+    - host: ab0dc096fff384475a0cc5d82356c6bd-1801290425.us-east-1.elb.amazonaws.com
+      http:
         paths:
           - path: /
             pathType: Prefix
