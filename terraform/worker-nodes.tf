@@ -5,9 +5,9 @@ resource "aws_eks_node_group" "hello_world" {
   subnet_ids      = aws_subnet.k8s_cluster[*].id
  
   scaling_config {
-    desired_size = 2
+    desired_size = 3
     max_size     = 3
-    min_size     = 1
+    min_size     = 3
   }
 
   instance_types = [ "t3.medium" ]
