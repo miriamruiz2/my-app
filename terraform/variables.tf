@@ -12,3 +12,9 @@ variable "cluster-name" {
   type    = string
   description = "The name of the cluster "
 }
+
+variable "alarm_actions" {
+  description = "ARNs of actions to take when the alarm state changes"
+  type        = list(string)
+  default     = []
+}

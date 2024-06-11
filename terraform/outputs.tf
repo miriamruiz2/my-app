@@ -53,3 +53,7 @@ output "config_map_aws_auth" {
 output "kubeconfig" {
   value = local.kubeconfig
 }
+
+output "lb_arn" {
+  value = data.aws_lb.k8s_lb.arn
+}
