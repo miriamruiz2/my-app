@@ -1,20 +1,76 @@
-resource "aws_cloudwatch_log_group" "lb_log_group" {
-  name              = "/aws/elasticloadbalancing/${data.aws_lb.k8s_lb.name}"
-  retention_in_days = 7
+resource "aws_cloudwatch_dashboard" "demo-dashboard" {
+  dashboard_name = "demo-dashboard-${var.ec2-instance}"
+
+  dashboard_body = jsonencode({
+    widgets = [
+      {
+        type   = "metric"
+        x      = 0
+        y      = 0
+        width  = 12
+        height = 6
+
+        properties = {
+          metrics = [
+            [
+              "AWS/EC2",
+              "CPUUtilization",
+              "InstanceId",
+              "${var.ec2-instance}"
+            ]
+          ]
+          period = 300
+          stat   = "Average"
+          region = "us-east-1"
+          title  = "${var.ec2-instance} - CPU Utilization"
+        }
+      },
+      {
+        type   = "text"
+        x      = 0
+        y      = 7
+        width  = 3
+        height = 3
+
+        properties = {
+          markdown = "My Demo Dashboard"
+        }
+      },
+      {
+        type   = "metric"
+        x      = 0
+        y      = 0
+        width  = 12
+        height = 6
+
+        properties = {
+          metrics = [
+            [
+              "AWS/EC2",
+              "NetworkIn",
+              "InstanceId",
+              "${var.ec2-instance}"
+            ]
+          ]
+          period = 300
+          stat   = "Average"
+          region = "us-east-1"
+          title  = "${var.ec2-instance} - NetworkIn"
+        }
+      }
+    ]
+  })
 }
 
-resource "aws_cloudwatch_metric_alarm" "alarm" {
-  alarm_name          = "${var.cluster-name}-5xx-alarm"
-  comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "1"
-  metric_name         = "HTTPCode_ELB_5XX_Count"
-  namespace           = "AWS/ApplicationELB"
-  period              = "60"
-  statistic           = "Sum"
-  threshold           = "1"
-  alarm_description   = "This metric monitors 5XX errors"
-  dimensions = {
-    LoadBalancer = data.aws_lb.k8s_lb.name
-  }
-  alarm_actions = var.alarm_actions
+resource "aws_cloudwatch_metric_alarm" "ec2-cpu-alarm" {
+  alarm_name                = "terraform-ec2-cpu-alarm"
+  comparison_operator       = "GreaterThanOrEqualToThreshold"
+  evaluation_periods        = 2
+  metric_name               = "CPUUtilization"
+  namespace                 = "AWS/EC2"
+  period                    = 120
+  statistic                 = "Average"
+  threshold                 = 80
+  alarm_description         = "This metric monitors ec2 cpu utilization reaches 80%"
+  insufficient_data_actions = []
 }

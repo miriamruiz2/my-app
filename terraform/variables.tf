@@ -13,6 +13,11 @@ variable "cluster-name" {
   description = "The name of the cluster "
 }
 
+variable "ec2-instance" {
+  type    = string
+  default = "i-03e485bc335b9a58a"
+}
+
 variable "alarm_actions" {
   description = "ARNs of actions to take when the alarm state changes"
   type        = list(string)
