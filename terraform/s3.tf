@@ -1,5 +1,7 @@
 resource "aws_s3_bucket" "s3-bucket" {
   bucket = "mi-tf-bucket" 
+  # TAGs of Resources
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_acl" "s3-acl" {
